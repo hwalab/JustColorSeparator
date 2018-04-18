@@ -38,9 +38,10 @@ function initApp() {
     applyColor(color);
 
     document.addEventListener("dblclick", () => {
-        const newColor = utils.getRandomColor();
-        applyColor(newColor);
-        history.replaceState(null, null, `?${newColor.substring(1)}`);
+        window.location.search = utils.getRandomColor().substring(1);
+        // const newColor = utils.getRandomColor();
+        // applyColor(newColor);
+        // history.replaceState(null, null, `?${newColor.substring(1)}`);
     });
 }
 
