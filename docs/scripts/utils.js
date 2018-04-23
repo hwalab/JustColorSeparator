@@ -3,7 +3,7 @@
  *  https://www.hwalab.com/justcolorseparator/
  */
 
-/* eslint-disable max-statements */
+/* eslint-disable require-jsdoc, max-statements */
 
 /**
  * Adds a leading number sign (#) if the string argument is a hex color value (eg F955AB).
@@ -15,25 +15,11 @@ export function ensureHexColorHash(colorString) {
     return hexColorRegex.test(colorString) ? `#${colorString}` : colorString;
 }
 
-/**
- * Creates a new favicon in memory and fills it with the specified color.
- * @param {*} color The color of the icon.
- * @returns {void}
- */
-export function setColorFavicon(color) {
-    const canvas = document.createElement("canvas");
-    // canvas.width = 16;
-    canvas.width = 64;
-    // canvas.height = 16;
-    canvas.height = 64;
-    const ctx = canvas.getContext("2d");
-    ctx.fillStyle = color;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+export function addFaviconElement(document, dataURL) {
     const link = document.createElement("link");
     link.type = "image/png";
     link.rel = "icon";
-    link.href = canvas.toDataURL();
+    link.href = dataURL;
     document.head.appendChild(link);
 }
 

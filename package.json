@@ -27,6 +27,8 @@
             "no-ternary": "off",
             "one-var": "off",
             "padded-blocks": "off",
+            "sort-keys": "off",
+            "quote-props": ["error", "as-needed"],
             "space-before-function-paren": "off"
         }
     }
