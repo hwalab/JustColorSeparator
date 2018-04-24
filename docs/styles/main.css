@@ -1,3 +1,7 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #fff;
     color: #000;
@@ -26,20 +30,73 @@ a:hover {
 
 ul {
     list-style: none;
+    padding: 0;
 }
 
 li {
     display: flex;
     align-items: center;
-    margin: 0.5rem 0;
-    content: "test";
+    margin-bottom: 1rem;
 }
 
-li::before {
-    content: "";
-    background-color: var(--color);
-    width: 2rem;
-    /* display: inline-block; */
-    height: 2rem;
+/*
+ * Examples list
+ */
+
+.examples-list img {
+    height: 16px;
     margin-right: 1rem;
+    width: 16px;
+}
+
+abbr {
+    display: none;
+}
+
+@media (min-width: 27.5rem) {
+    abbr {
+        display: initial;
+    }
+}
+
+/*
+ * Named colors list
+ */
+
+@media (min-width: 576px) {
+    .colors-list {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 768px) {
+    .colors-list {
+        column-count: 3;
+    }
+}
+  
+@media (min-width: 992px) {
+    .colors-list {
+        column-count: 4;
+    }
+}
+
+.colors-list li::before {
+    background-color: var(--color);
+    content: "";
+    height: 16px;
+    margin-right: 1rem;
+    width: 16px;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 1rem;
+}
+
+@media (min-width: 576px) {
+    .container {
+        padding: 2rem;
+    }
 }

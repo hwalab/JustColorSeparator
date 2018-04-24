@@ -23,6 +23,25 @@ function applyColor(color, shape) {
     document.querySelector("meta[name=theme-color]").setAttribute("content", computedColor);
 }
 
+function getQueryParams(query) {
+    if (!query) {
+        return null;
+    }
+
+    const params = query.split("-");
+    return { color: utils.ensureHexColorHash(params[0]), iconShape: params[1] }
+}
+
+function initExamples() {
+    [...document.getElementById("examples").children].forEach(elem => {
+        const params = getQueryParams(elem.dataset.query);
+        if (params) {
+            const imgElem = elem.querySelector("img");
+            if (imgElem) imgElem.src = colorIcon(params.color, params.iconShape);
+        }
+    });
+}
+
 /**
  * Initializes the app.
  * @returns {void}
@@ -33,12 +52,14 @@ function initApp() {
     // Try to apply the color query parameter. If we don't have a query parameter, generate a random color
     // and update its code in the url
     const query = window.location.search.substring(1);
-    if (query.length === 0) return;
+    if (query.length === 0) {
+        initExamples();
+        document.getElementById("help").hidden = false;
+        return;
+    }
 
     const params = query.split("-");
     applyColor(utils.ensureHexColorHash(params[0]), params[1]);
-
-    document.getElementById("help").hidden = true;
 
     // Blank out the document title using an invisible (zero-width) control character
     document.title = "\u200E";

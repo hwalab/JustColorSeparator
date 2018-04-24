@@ -18,7 +18,7 @@ export default function (color, shape) {
     // console.log(color, shape);
 
     const canvas = document.createElement("canvas");
-    const size = 64;
+    const size = 32;
     canvas.width = size;
     canvas.height = size;
     if (!canvas.getContext) return null;
