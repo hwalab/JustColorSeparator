@@ -23,12 +23,15 @@
             "max-len": ["error", 120],
             "multiline-comment-style": "off",
             "multiline-ternary": ["error", "always-multiline"],
-            "no-magic-numbers": ["error", { "ignore": [0, 1, 2] }],
+            "no-extra-parens": ["error", "all", { "nestedBinaryExpressions": false }],
+            "no-magic-numbers": ["error", { "ignore": [0, 1, 2, 4] }],
             "no-ternary": "off",
+            "object-curly-spacing": "off",
+            "object-property-newline": ["error", { "allowAllPropertiesOnSameLine": true }], 
             "one-var": "off",
             "padded-blocks": "off",
-            "sort-keys": "off",
             "quote-props": ["error", "as-needed"],
+            "sort-keys": "off",
             "space-before-function-paren": "off"
         }
     }
