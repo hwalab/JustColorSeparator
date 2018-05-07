@@ -39,7 +39,10 @@ function applyParams(color, shape) {
     console.log("Computed color:", computedColor);
 
     // Create a new favicon with the specified fill color and shape, and add it to the HTML head
-    colorFavicon.addFaviconElement(document, colorFavicon.createIcon(document, computedColor, shape));
+    // If there is no icon shape parameter, the last used shape is saved and used from local storage
+    const remShape = colorFavicon.validateIconShape(shape || localStorage.getItem("iconShape"));
+    colorFavicon.addFaviconElement(document, colorFavicon.createIcon(document, computedColor, remShape));
+    localStorage.setItem("iconShape", remShape);
 
     // Update the theme-color meta tag to update the browser toolbar color (on browsers that support this feature)
     document.querySelector("meta[name=theme-color]").setAttribute("content", computedColor);

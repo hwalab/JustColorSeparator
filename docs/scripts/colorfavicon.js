@@ -3,6 +3,8 @@
  *  https://www.hwalab.com/justcolorseparator/
  */
 
+/* eslint-disable no-magic-numbers */
+
 const FAVICON_SIZE = 32;
 
 /**
@@ -16,14 +18,25 @@ const shapeFunc = {
         ctx.fill();
     },
     hline: ctx => ctx.fillRect(0, (ctx.canvas.height / 2) - 2, ctx.canvas.width, 4),
-    vline: ctx => ctx.fillRect((ctx.canvas.width / 2) - 2, 0, 4, ctx.canvas.height)
+    vline: ctx => ctx.fillRect((ctx.canvas.width / 2) - 2, 0, 4, ctx.canvas.height),
+    hrect: ctx => ctx.fillRect(0, (ctx.canvas.height / 2) - 10, ctx.canvas.width, 20),
+    vrect: ctx => ctx.fillRect((ctx.canvas.width / 2) - 10, 0, 20, ctx.canvas.height)
 };
+
+/**
+ * Tests for a valid icon shape, and returns a default value if the specified shape is invalid.
+ * @param {*} shape The icon shape to test.
+ * @returns {string} A valid icon shape.
+ */
+export function validateIconShape(shape) {
+    return shape in shapeFunc ? shape : "square";
+}
 
 /**
  * Creates a color filled favicon and returns its data URI.
  * @param {object} document The Document object.
  * @param {string} color The color of the icon.
- * @param {string} shape The shape of the icon.
+ * @param {string} shape The shape of the icon, "square" by default.
  * @returns {string} A DOMString containing the icon data URI.
  */
 export function createIcon(document, color, shape) {
@@ -36,8 +49,7 @@ export function createIcon(document, color, shape) {
     ctx.fillStyle = color;
 
     // Apply the icon shape function
-    const func = shape in shapeFunc ? shape : "square";
-    shapeFunc[func](ctx);
+    shapeFunc[validateIconShape(shape)](ctx);
 
     return canvas.toDataURL();
 }
