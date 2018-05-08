@@ -23,10 +23,6 @@ body {
     padding: 0;
 }
 
-[hidden] {
-    display: none !important;
-}
-
 a {
     color: #007bff;
     text-decoration: none;
@@ -64,6 +60,18 @@ li {
     }
 }
 
+.screen--color, .screen--help {
+    display: none;
+}
+
+[data-screen="color"] .screen--color {
+    display: block;
+}
+
+[data-screen="help"] .screen--help {
+    display: block;
+}
+
 /* ==========================================================================
    Color screen
    ========================================================================== */
@@ -72,25 +80,87 @@ li {
     text-align: center;
 }
 
-.dragtip__link {
+a.dragtip__link {
     align-items: center;
     background: rgba(0, 0, 0, 0.25);
-    border-radius: 0.25rem;
+    border-radius: 2px;
     color: #fff;
+    /* font-weight: bold; */
+    font-size: 0.875rem;
+    letter-spacing: 0.08929em;
+    font-weight: 500;
     display: inline-flex;
     padding: 0.5rem 1rem;
+    /* text-shadow: 1px 1px 2px #000, 0 0 1rem #fff; */
+    /* text-transform: uppercase; */
+    /* box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1); */
+
+    outline: none;
+    outline-color: initial;
+    outline-style: none;
+    outline-width: initial;
 }
 
 .dragtip__link::after {
-    content: "drag me to your bookmarks bar";
+    /* content: "Drag me to your bookmarks bar"; */
+    content: "drag to bookmarks";
+    /* content: "Drag me"; */
     display: inline-block;
     margin-left: 0.5rem;
 }
 
-.dragtip__link:hover {
+.dragtip__link:hover, .dragtip__link:focus {
+    /* box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); */
+
     background: rgba(0, 0, 0, 0.33);
+    /* background: rgba(255, 255, 255, 0.05); */
+    /* color: inherit; */
+    /* border-bottom: 2px solid; */
+    text-decoration: none;
+    /* line-height: 2; */
+}
+
+.helplink {
+    bottom: 2rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    /* color: #fff; */
+    /* filter: invert(1) grayscale(1) contrast(9); */
+    /* filter: contrast(15) contrast(.5) sepia(1) brightness(1.85) hue-rotate(319deg) saturate(3.45); */
+    /* filter: contrast(15) contrast(.5) grayscale(1) brightness(1.85) hue-rotate(319deg) saturate(3.45); */
+    /* filter: contrast(15) contrast(.5) brightness(1.85) saturate(3.45); */
+}
+
+.helplink__link {
+    /* color: inherit; */
+    /* filter: invert(100%); */
+    /* filter: invert(1) grayscale(1) contrast(9); */
+
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.25rem;
+    /* text-shadow: 1px 1px 0 #000; */
+    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), 0 0 1rem #fff; */
+    background: rgba(0, 0, 0, 0.125);
+    border-radius: 50%;
+    /* padding: 0.445rem 1rem; */
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-block;
+    line-height: 2.5rem;
+
+        /* text-shadow: 1px 1px 2px #fff, 0 0 1rem #000; */
+}
+
+.helplink__link:hover, .helplink__link:focus {
     color: #fff;
     text-decoration: none;
+    background: rgba(0, 0, 0, 0.25);
+    /* border-radius: 50%; */
+    /* padding: 0.5rem 1rem; */
 }
 
 /* ==========================================================================

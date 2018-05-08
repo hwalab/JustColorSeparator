@@ -12,13 +12,18 @@
 
 <body>
 
-    <div id="dragTip" class="container dragtip" hidden>
+    <div class="container dragtip screen--color">
         <!-- We need a space to prevent Firefox from adding the url as the bookmark name -->
         <!-- Fortunately Chrome and Opera ignore this space character -->
         <a href="" class="dragtip__link"><img width="16" height="16" id="dragTipIcon"> </a>
     </div>
 
-    <div id="help" class="container" hidden>
+    <div class="helplink screen--color">
+        <!-- <a href="/">Help screen</a> -->
+        <a class="helplink__link" href="/">?</a>
+    </div>
+
+    <div class="container screen--help">
         <h1>Just Color Separator</h1>
         <p>
             Customizable color separators for your browser bookmarks bar and open tabs list.

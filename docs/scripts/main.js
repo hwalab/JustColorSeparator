@@ -68,7 +68,6 @@ function applyParams(color, shape) {
  * @returns {void}
  */
 function showHelp() {
-    document.getElementById("help").hidden = false;
 
     // Initializes the icons of the ready-to-use examples
     Array.from(document.getElementById("examples").children).forEach(elem => {
@@ -96,9 +95,9 @@ function initApp() {
 
     // Parse and apply color and icon shape query parameters, or show help if we don't have at least a color parameter
     const params = getQueryParams(window.location.search.substring(1));
+    document.body.dataset.screen = params ? "color" : "help";
     if (params) {
         applyParams(params.color, params.iconShape);
-        document.getElementById("dragTip").hidden = false;
 
         // Blank out the document title using an invisible (zero-width) control character
         document.title = "\u200E";
