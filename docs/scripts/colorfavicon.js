@@ -5,6 +5,7 @@
 
 /* eslint-disable no-magic-numbers */
 
+// const FAVICON_SIZE = 32;
 const FAVICON_SIZE = 32;
 
 /**
@@ -19,8 +20,8 @@ const shapeFunc = {
     },
     hline: ctx => ctx.fillRect(0, (ctx.canvas.height / 2) - 2, ctx.canvas.width, 4),
     vline: ctx => ctx.fillRect((ctx.canvas.width / 2) - 2, 0, 4, ctx.canvas.height),
-    hrect: ctx => ctx.fillRect(0, (ctx.canvas.height / 2) - 10, ctx.canvas.width, 20),
-    vrect: ctx => ctx.fillRect((ctx.canvas.width / 2) - 10, 0, 20, ctx.canvas.height)
+    hrect: ctx => ctx.fillRect(0, ctx.canvas.height * 0.2, ctx.canvas.width, ctx.canvas.height * 0.6),
+    vrect: ctx => ctx.fillRect(ctx.canvas.width * 0.2, 0, ctx.canvas.width * 0.6, ctx.canvas.height)
 };
 
 /**

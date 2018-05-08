@@ -20,6 +20,24 @@ function getQueryParams(query) {
 }
 
 /**
+ * Creates and applies the color favicon.
+ * @param {string} shape The icon shape.
+ * @param {string} computedColor The icon color.
+ * @returns {void}
+ */
+function applyFavicon(shape, computedColor) {
+    // Create a new favicon with the specified fill color and shape, and add it to the HTML head
+    // If there is no icon shape parameter, the last used shape is saved and used from local storage
+    const remShape = colorFavicon.validateIconShape(shape || localStorage.getItem("iconShape"));
+    const icon = colorFavicon.createIcon(document, computedColor, remShape);
+    colorFavicon.addFaviconElement(document, icon);
+    localStorage.setItem("iconShape", remShape);
+
+    // Add the icon to the drag tip
+    document.getElementById("dragTipIcon").src = icon;
+}
+
+/**
  * Applies the specified parameters.
  * @param {string} color The color of the background and favicon.
  * @param {string} shape The favicon shape.
@@ -38,11 +56,8 @@ function applyParams(color, shape) {
     const computedColor = window.getComputedStyle(document.body).getPropertyValue("background-color");
     console.log("Computed color:", computedColor);
 
-    // Create a new favicon with the specified fill color and shape, and add it to the HTML head
-    // If there is no icon shape parameter, the last used shape is saved and used from local storage
-    const remShape = colorFavicon.validateIconShape(shape || localStorage.getItem("iconShape"));
-    colorFavicon.addFaviconElement(document, colorFavicon.createIcon(document, computedColor, remShape));
-    localStorage.setItem("iconShape", remShape);
+    // Apply the favicon
+    applyFavicon(shape, computedColor);
 
     // Update the theme-color meta tag to update the browser toolbar color (on browsers that support this feature)
     document.querySelector("meta[name=theme-color]").setAttribute("content", computedColor);
@@ -61,7 +76,9 @@ function showHelp() {
         }
     });
 
+    // Show help, hide drag tip
     document.getElementById("help").hidden = false;
+    document.getElementById("dragTip").hidden = true;
 }
 
 /**
@@ -76,7 +93,6 @@ function initApp() {
         applyParams(params.color, params.iconShape);
 
         // Blank out the document title using an invisible (zero-width) control character
-        // document.title = "\uFEFF";
         document.title = "\u200E";
     } else {
         showHelp();
