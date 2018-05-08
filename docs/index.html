@@ -12,10 +12,10 @@
 
 <body>
 
-    <div id="dragTip" class="container dragtip">
-        <a href="" class="dragtip__link">
-            <img width="16" height="16" id="dragTipIcon">
-        </a>
+    <div id="dragTip" class="container dragtip" hidden>
+        <!-- We need a space to prevent Firefox from adding the url as the bookmark name -->
+        <!-- Fortunately Chrome and Opera ignore this space character -->
+        <a href="" class="dragtip__link"><img width="16" height="16" id="dragTipIcon"> </a>
     </div>
 
     <div id="help" class="container" hidden>
@@ -222,6 +222,7 @@
     </div>
 
     <script type="module" src="/scripts/main.js"></script>
+    <script nomodule src="/scripts/bundle.js"></script>
 </body>
 
 </html>

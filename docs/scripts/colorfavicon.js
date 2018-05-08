@@ -5,7 +5,6 @@
 
 /* eslint-disable no-magic-numbers */
 
-// const FAVICON_SIZE = 32;
 const FAVICON_SIZE = 32;
 
 /**

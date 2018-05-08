@@ -5,6 +5,10 @@
     "keywords": [],
     "author": "HWALab",
     "license": "MIT",
+    "scripts": {
+        "build": "rollup -c",
+        "watch": "rollup -c -w"
+    },
     "eslintConfig": {
         "env": {
             "browser": true,
@@ -15,24 +19,69 @@
             "sourceType": "module"
         },
         "rules": {
-            "arrow-parens": ["error", "as-needed"],
-            "capitalized-comments": ["error", "always", { "ignoreConsecutiveComments": true }],
-            "curly": ["error", "multi-line"],
+            "arrow-parens": [
+                "error",
+                "as-needed"
+            ],
+            "capitalized-comments": [
+                "error",
+                "always",
+                {
+                    "ignoreConsecutiveComments": true
+                }
+            ],
+            "curly": [
+                "error",
+                "multi-line"
+            ],
             "func-style": "off",
-            "linebreak-style": ["error", "windows"],
-            "max-len": ["error", 120],
+            "linebreak-style": [
+                "error",
+                "windows"
+            ],
+            "max-len": [
+                "error",
+                120
+            ],
             "multiline-comment-style": "off",
-            "multiline-ternary": ["error", "always-multiline"],
-            "no-extra-parens": ["error", "all", { "nestedBinaryExpressions": false }],
-            "no-magic-numbers": ["error", { "ignore": [0, 1, 2] }],
+            "multiline-ternary": [
+                "error",
+                "always-multiline"
+            ],
+            "no-extra-parens": [
+                "error",
+                "all",
+                {
+                    "nestedBinaryExpressions": false
+                }
+            ],
+            "no-magic-numbers": [
+                "error",
+                {
+                    "ignore": [
+                        0,
+                        1,
+                        2
+                    ]
+                }
+            ],
             "no-ternary": "off",
             "object-curly-spacing": "off",
-            "object-property-newline": ["error", { "allowAllPropertiesOnSameLine": true }], 
+            "object-property-newline": [
+                "error",
+                {
+                    "allowAllPropertiesOnSameLine": true
+                }
+            ],
             "one-var": "off",
             "padded-blocks": "off",
-            "quote-props": ["error", "as-needed"],
+            "quote-props": [
+                "error",
+                "as-needed"
+            ],
             "sort-keys": "off",
             "space-before-function-paren": "off"
         }
-    }
+    },
+    "devDependencies": {}
 }

@@ -64,21 +64,20 @@ function applyParams(color, shape) {
 }
 
 /**
- * Shows the help screen, after initializing the icons of the ready-to-use examples.
+ * Updates and shows the help screen.
  * @returns {void}
  */
 function showHelp() {
-    [...document.getElementById("examples").children].forEach(elem => {
+    document.getElementById("help").hidden = false;
+
+    // Initializes the icons of the ready-to-use examples
+    Array.from(document.getElementById("examples").children).forEach(elem => {
         const params = getQueryParams(elem.dataset.query);
         if (params) {
             const imgElem = elem.querySelector("img");
             if (imgElem) imgElem.src = colorFavicon.createIcon(document, params.color, params.iconShape);
         }
     });
-
-    // Show help, hide drag tip
-    document.getElementById("help").hidden = false;
-    document.getElementById("dragTip").hidden = true;
 }
 
 /**
@@ -91,6 +90,7 @@ function initApp() {
     const params = getQueryParams(window.location.search.substring(1));
     if (params) {
         applyParams(params.color, params.iconShape);
+        document.getElementById("dragTip").hidden = false;
 
         // Blank out the document title using an invisible (zero-width) control character
         document.title = "\u200E";
