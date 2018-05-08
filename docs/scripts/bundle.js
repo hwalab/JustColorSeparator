@@ -32,7 +32,7 @@
      * @returns {string} A valid icon shape.
      */
     function validateIconShape(shape) {
-        return shape in shapeFunc ? shape : "square";
+        return shapeFunc.hasOwnProperty(shape) ? shape : "square";
     }
 
     /**
@@ -106,17 +106,17 @@
 
     /**
      * Creates and applies the color favicon.
-     * @param {string} shape The icon shape.
      * @param {string} computedColor The icon color.
+     * @param {string} shape The icon shape.
      * @returns {void}
      */
-    function applyFavicon(shape, computedColor) {
+    function applyFavicon(computedColor, shape) {
+
         // Create a new favicon with the specified fill color and shape, and add it to the HTML head
-        // If there is no icon shape parameter, the last used shape is saved and used from local storage
-        const remShape = validateIconShape(shape || localStorage.getItem("iconShape"));
-        const icon = createIcon(document, computedColor, remShape);
+        const validShape = validateIconShape(shape);
+        const icon = createIcon(document, computedColor, validShape);
         addFaviconElement(document, icon);
-        localStorage.setItem("iconShape", remShape);
+        localStorage.setItem("iconShape", validShape);
 
         // Add the icon to the drag tip
         document.getElementById("dragTipIcon").src = icon;
@@ -142,7 +142,7 @@
         console.log("Computed color:", computedColor);
 
         // Apply the favicon
-        applyFavicon(shape, computedColor);
+        applyFavicon(computedColor, shape);
 
         // Update the theme-color meta tag to update the browser toolbar color (on browsers that support this feature)
         document.querySelector("meta[name=theme-color]").setAttribute("content", computedColor);
@@ -163,6 +163,14 @@
                 if (imgElem) imgElem.src = createIcon(document, params.color, params.iconShape);
             }
         });
+
+        // Update the icon shape of the named colors links with the last used shape saved to local storage
+        const lastShape = localStorage.getItem("iconShape");
+        if (lastShape) {
+            document.querySelectorAll(".colors-list a").forEach(elem => {
+                elem.href += `-${lastShape}`;
+            });
+        }
     }
 
     /**

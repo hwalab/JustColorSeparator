@@ -29,7 +29,7 @@ const shapeFunc = {
  * @returns {string} A valid icon shape.
  */
 export function validateIconShape(shape) {
-    return shape in shapeFunc ? shape : "square";
+    return shapeFunc.hasOwnProperty(shape) ? shape : "square";
 }
 
 /**
